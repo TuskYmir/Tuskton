@@ -43,18 +43,6 @@ public class NodeGenerator : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Node"))
                 {
-                    MonoBehaviour[] scripts = hit.collider.GetComponents<MonoBehaviour>();
-                    foreach (MonoBehaviour script in scripts)
-                    {
-                        // Use reflection to find and set the AlreadyGenerate variable
-                        var field = script.GetType().GetField("AlreadyGenerate");
-                        if (field != null && field.FieldType == typeof(bool))
-                        {
-                            field.SetValue(script, true);
-                            Debug.Log($"Node {hit.collider.name} marked as AlreadyGenerate by script {script.GetType().Name}.");
-                            break; // Exit the loop once the field is found and set
-                        }
-                    }
                     selectedNode = hit.collider.gameObject;
                     ShowMenu(hit.point);
 
@@ -73,6 +61,8 @@ public class NodeGenerator : MonoBehaviour
     public void GenerateNodes()
     {
         if (selectedNode == null) return;
+
+
 
         if (Prefabs.Count == 0)
         {

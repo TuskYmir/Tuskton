@@ -5,9 +5,8 @@ using UnityEngine.UI;
 public class story : MonoBehaviour, IRandomedValueProvider
 {
     public float randomedValue;
-    public float positionX;
-    public float positionZ;
     public bool AlreadyGenerate = false;
+
     public float RandomedValue => randomedValue;
     public Text text;
     public void randomValue()
@@ -20,6 +19,5 @@ public class story : MonoBehaviour, IRandomedValueProvider
     void Awake()
     {
         randomValue();
-
     }
 }
