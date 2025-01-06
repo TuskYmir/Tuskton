@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DragMoveCamera : MonoBehaviour
 {
-    public float dragSpeed = 2.0f; // Speed of drag movement
+    public float dragSpeed = 4f; // Speed of drag movement
     public float scrollSpeed = 2.0f; // Speed of scrolling
     public float baseMoveSpeed = 5.0f; // Base speed of WASD movement
     public float zoomSpeedMultiplier = 0.5f; // Multiplier for WASD speed based on height
@@ -10,28 +10,34 @@ public class DragMoveCamera : MonoBehaviour
     public float maxHeight = 50.0f; // Maximum camera height
     public float minTiltAngle = 45.0f; // Tilt angle at minimum height
     public float maxTiltAngle = 90.0f; // Tilt angle at maximum height
+    public float moveDuration = 1.0f; // Duration for smooth movement
 
     private Vector3 dragOrigin; // Initial position when the drag starts
     private bool isDragging = false;
+    private bool isMovingToNode = false;
+    private Vector3 targetPosition;
+    private float moveStartTime;
 
     void Update()
     {
         HandleDragging();
         HandleScrolling();
         HandleWASDMovement();
+        HandleRaycastHit();
+        SmoothMoveToNode();
     }
 
     void HandleDragging()
     {
         // Detect mouse down
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             isDragging = true;
             dragOrigin = Input.mousePosition;
         }
 
         // Detect mouse up
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(1))
         {
             isDragging = false;
         }
@@ -90,5 +96,38 @@ public class DragMoveCamera : MonoBehaviour
 
         // Move camera
         transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
+    }
+
+    void HandleRaycastHit()
+    {
+        if (Input.GetMouseButtonDown(0)) // Left mouse button
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.CompareTag("Node"))
+                {
+                    targetPosition = new Vector3(hit.point.x, transform.position.y, hit.point.z - 7);
+                    moveStartTime = Time.time;
+                    isMovingToNode = true;
+                }
+            }
+        }
+    }
+
+    void SmoothMoveToNode()
+    {
+        if (isMovingToNode)
+        {
+            float t = (Time.time - moveStartTime) / moveDuration;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, t);
+
+            if (t >= 1.0f)
+            {
+                isMovingToNode = false;
+            }
+        }
     }
 }
