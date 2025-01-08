@@ -5,21 +5,22 @@ using UnityEngine;
 [System.Serializable]
 public class CloneData
 {
-    public Vector3 position; // Position of the clone
-    public string type;      // Type of the clone ("Positive" or "Negative")
-    public float randomedValue; // Unique random value
-    public bool alreadyGenerate; // Whether it has generated something
+    public Vector3 position;
+    public string type;
+    public float randomedValue;
+    public bool alreadyGenerate;
 }
 
 [System.Serializable]
 public class GameData
 {
-    public List<CloneData> clones = new List<CloneData>(); // List of all clone data
+    public List<CloneData> clones = new List<CloneData>();
 }
+
 public class saveGame : MonoBehaviour
 {
-    public GameObject positivePrefab; // Assign Positive prefab in Unity
-    public GameObject negativePrefab; // Assign Negative prefab in Unity
+    public List<GameObject> prefabs; // Assign prefabs in Unity Inspector
+    private Dictionary<string, GameObject> prefabDictionary;
 
     private string savePath;
 
@@ -27,6 +28,17 @@ public class saveGame : MonoBehaviour
     {
         savePath = Application.persistentDataPath + "/savegame.json";
         Debug.Log("Save Path: " + savePath);
+
+        // Initialize the dictionary
+        prefabDictionary = new Dictionary<string, GameObject>();
+        foreach (GameObject prefab in prefabs)
+        {
+            if (prefab.TryGetComponent<INode>(out INode nodeScript))
+            {
+                string typeName = nodeScript.GetType().Name;
+                prefabDictionary[typeName] = prefab;
+            }
+        }
     }
 
     public void SaveGame()
@@ -37,32 +49,23 @@ public class saveGame : MonoBehaviour
         GameObject[] nodes = GameObject.FindGameObjectsWithTag("Node");
         foreach (GameObject node in nodes)
         {
-            // Check for Positive or Negative scripts
-            if (node.TryGetComponent<Positive>(out Positive positiveScript))
+            if (node.TryGetComponent<INode>(out INode nodeScript))
             {
-                gameData.clones.Add(new CloneData
-                {
-                    position = node.transform.position,
-                    type = "Positive",
-                    randomedValue = positiveScript.randomedValue,
-                    alreadyGenerate = positiveScript.AlreadyGenerate
-                });
-            }
-            else if (node.TryGetComponent<Negative>(out Negative negativeScript))
-            {
-                gameData.clones.Add(new CloneData
-                {
-                    position = node.transform.position,
-                    type = "Negative",
-                    randomedValue = negativeScript.randomedValue,
-                    alreadyGenerate = negativeScript.AlreadyGenerate
-                });
+                string type = nodeScript.GetType().Name;
+                gameData.clones.Add(CreateCloneData(node.transform.position, type, nodeScript.randomedValue, nodeScript.AlreadyGenerate));
             }
         }
 
-        string json = JsonUtility.ToJson(gameData, true);
-        File.WriteAllText(savePath, json);
-        Debug.Log("Game Saved: " + json);
+        try
+        {
+            string json = JsonUtility.ToJson(gameData, true);
+            File.WriteAllText(savePath, json);
+            Debug.Log("Game Saved: " + json);
+        }
+        catch (IOException e)
+        {
+            Debug.LogError("Failed to save game: " + e.Message);
+        }
     }
 
     public void LoadGame()
@@ -73,46 +76,64 @@ public class saveGame : MonoBehaviour
             return;
         }
 
-        string json = File.ReadAllText(savePath);
-        GameData gameData = JsonUtility.FromJson<GameData>(json);
-
-        // Destroy all existing nodes
-        GameObject[] existingNodes = GameObject.FindGameObjectsWithTag("Node");
-        foreach (GameObject node in existingNodes)
+        try
         {
-            Destroy(node);
-        }
+            string json = File.ReadAllText(savePath);
+            GameData gameData = JsonUtility.FromJson<GameData>(json);
 
-        // Recreate clones from saved data
-        foreach (CloneData cloneData in gameData.clones)
-        {
-            GameObject prefabToUse = null;
-
-            // Determine which prefab to use based on the type
-            if (cloneData.type == "Positive")
-                prefabToUse = positivePrefab;
-            else if (cloneData.type == "Negative")
-                prefabToUse = negativePrefab;
-
-            if (prefabToUse != null)
+            // Destroy all existing nodes
+            GameObject[] existingNodes = GameObject.FindGameObjectsWithTag("Node");
+            foreach (GameObject node in existingNodes)
             {
-                GameObject newClone = Instantiate(prefabToUse, cloneData.position, Quaternion.Euler(90, 0, 0));
-                newClone.tag = "Node";
+                Destroy(node);
+            }
 
-                // Assign saved values to the script
-                if (newClone.TryGetComponent<Positive>(out Positive positiveScript))
+            // Recreate clones from saved data
+            foreach (CloneData cloneData in gameData.clones)
+            {
+                GameObject prefabToUse = GetPrefabByType(cloneData.type);
+                if (prefabToUse != null)
                 {
-                    positiveScript.randomedValue = cloneData.randomedValue;
-                    positiveScript.AlreadyGenerate = cloneData.alreadyGenerate;
-                }
-                else if (newClone.TryGetComponent<Negative>(out Negative negativeScript))
-                {
-                    negativeScript.randomedValue = cloneData.randomedValue;
-                    negativeScript.AlreadyGenerate = cloneData.alreadyGenerate;
+                    GameObject newClone = Instantiate(prefabToUse, cloneData.position, Quaternion.Euler(90, 0, 0));
+                    newClone.tag = "Node";
+                    AssignCloneData(newClone, cloneData);
                 }
             }
-        }
 
-        Debug.Log("Game Loaded");
+            Debug.Log("Game Loaded");
+        }
+        catch (IOException e)
+        {
+            Debug.LogError("Failed to load game: " + e.Message);
+        }
+    }
+
+    private CloneData CreateCloneData(Vector3 position, string type, float randomedValue, bool alreadyGenerate)
+    {
+        return new CloneData
+        {
+            position = position,
+            type = type,
+            randomedValue = randomedValue,
+            alreadyGenerate = alreadyGenerate
+        };
+    }
+
+    private GameObject GetPrefabByType(string type)
+    {
+        if (prefabDictionary.TryGetValue(type, out GameObject prefab))
+        {
+            return prefab;
+        }
+        return null;
+    }
+
+    private void AssignCloneData(GameObject clone, CloneData cloneData)
+    {
+        if (clone.TryGetComponent<INode>(out INode nodeScript))
+        {
+            nodeScript.randomedValue = cloneData.randomedValue;
+            nodeScript.AlreadyGenerate = cloneData.alreadyGenerate;
+        }
     }
 }

@@ -28,6 +28,8 @@ public class NodeGenerator : MonoBehaviour
 
     private Camera mainCamera;
 
+    public TimeManager timeManager;
+
     private void Start()
     {
         // Cache the main camera reference
@@ -47,11 +49,10 @@ public class NodeGenerator : MonoBehaviour
                     ShowMenu(hit.point);
 
                     // Get the Node component and update the valueText
-                    IRandomedValueProvider valueProvider = selectedNode.GetComponent<IRandomedValueProvider>();
+                    INode valueProvider = selectedNode.GetComponent<INode>();
                     if (valueProvider != null)
                     {
-
-                        valueText.text = $"Value: {valueProvider.RandomedValue}";
+                        valueText.text = $"Value: {valueProvider.randomedValue}";
                     }
                 }
             }
@@ -62,27 +63,45 @@ public class NodeGenerator : MonoBehaviour
     {
         if (selectedNode == null) return;
 
-
-
-        if (Prefabs.Count == 0)
+        if (timeManager.currentActs > 0)
         {
-            Debug.LogError("No prefabs assigned for node generation.");
-            return;
+            if (Prefabs.Count == 0)
+            {
+                Debug.LogError("No prefabs assigned for node generation.");
+                return;
+            }
+
+            INode valueProvider = selectedNode.GetComponent<INode>();
+            if (valueProvider != null)
+            {
+                if (!valueProvider.AlreadyGenerate)
+                {
+                    Vector3 originPosition = selectedNode.transform.position;
+                    int nodeCount = Random.Range(minNodes, maxNodes + 1);
+
+                    // Add the RandomedValue of the selected node to money
+                    moneyManager.AddMoney(valueProvider.randomedValue); // Use MoneyManager to add money
+
+                    for (int i = 0; i < nodeCount; i++)
+                    {
+                        GenerateNode(originPosition);
+                    }
+
+                    // Set AlreadyGenerated to true
+                    valueProvider.AlreadyGenerate = true;
+                }
+                else
+                {
+                    Debug.Log("This node has already been generated.");
+                }
+            }
+
+            // Decrement acts
+            timeManager.currentActs -= 1;
         }
-
-        Vector3 originPosition = selectedNode.transform.position;
-        int nodeCount = Random.Range(minNodes, maxNodes + 1);
-
-        // Add the RandomedValue of the selected node to money
-        IRandomedValueProvider valueProvider = selectedNode.GetComponent<IRandomedValueProvider>();
-        if (valueProvider != null)
+        else
         {
-            moneyManager.AddMoney(valueProvider.RandomedValue); // Use MoneyManager to add money
-        }
-
-        for (int i = 0; i < nodeCount; i++)
-        {
-            GenerateNode(originPosition);
+            Debug.Log("No acts left.");
         }
 
         HideMenu();
