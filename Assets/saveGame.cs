@@ -60,7 +60,7 @@ public class saveGame : MonoBehaviour
 
     public void SaveGame()
     {
-        RootObject rootObject = new RootObject();
+        RootObject rootObject;
 
         // Load existing data
         if (File.Exists(savePath))
@@ -68,8 +68,12 @@ public class saveGame : MonoBehaviour
             string existingJson = File.ReadAllText(savePath);
             rootObject = JsonUtility.FromJson<RootObject>(existingJson);
         }
+        else
+        {
+            rootObject = new RootObject();
+        }
 
-        // Clear existing game data
+        // Clear existing game data but keep storyData intact
         rootObject.gameData = new GameData();
 
         // Find all objects with the tag "Node"

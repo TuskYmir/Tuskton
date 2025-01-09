@@ -17,6 +17,10 @@ public class NodeGenerator : MonoBehaviour
 
     [Header("UI Elements")]
     public Text valueText; // Assign the Text UI element in the Inspector
+    public Text HeadingText; // Assign the Text UI element in the Inspector
+    public Text StoryText; // Assign the Text UI element in the Inspector
+    public Text OutcomeText; // Assign the Text UI element in the Inspector
+    public GameObject alert; // Assign the Animation UI element in the Inspector
 
     private List<Vector3> generatedPositions = new List<Vector3>();
 
@@ -30,10 +34,13 @@ public class NodeGenerator : MonoBehaviour
 
     public TimeManager timeManager;
 
+    private Animator alertAnimator;
+
     private void Start()
     {
         // Cache the main camera reference
         mainCamera = Camera.main;
+        alertAnimator = alert.GetComponent<Animator>();
     }
 
     private void Update()
@@ -53,9 +60,16 @@ public class NodeGenerator : MonoBehaviour
                     if (valueProvider != null)
                     {
                         valueText.text = $"Value: {valueProvider.randomedValue}";
+                        HeadingText.text = $"Heading: {valueProvider.heading}";
+                        StoryText.text = $"Story: {valueProvider.storyText}";
+                        OutcomeText.text = $"Outcome: {valueProvider.outcome}";
                     }
                 }
-            }
+                else
+                {
+                    HideMenu();
+                }
+            }           
         }
     }
 
@@ -102,6 +116,8 @@ public class NodeGenerator : MonoBehaviour
         else
         {
             Debug.Log("No acts left.");
+            alertAnimator.SetTrigger("Noacts");
+
         }
 
         HideMenu();
