@@ -103,15 +103,13 @@ public class NodeGenerator : MonoBehaviour
 
                     // Set AlreadyGenerated to true
                     valueProvider.AlreadyGenerate = true;
+                    timeManager.currentActs -= 1;
                 }
                 else
                 {
                     Debug.Log("This node has already been generated.");
                 }
             }
-
-            // Decrement acts
-            timeManager.currentActs -= 1;
         }
         else
         {
