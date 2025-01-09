@@ -8,6 +8,8 @@ public class Negative : MonoBehaviour, INode
     private float _randomedValue;
     [SerializeField]
     private bool _alreadyGenerate;
+    [SerializeField]
+    private int _storyID;
 
     public float randomedValue
     {
@@ -21,11 +23,18 @@ public class Negative : MonoBehaviour, INode
         set => _alreadyGenerate = value;
     }
 
+    public int storyID
+    {
+        get => _storyID; 
+        set => _storyID = value;
+    }
+
     public int prefapIndexNumber = 0;
     public float RandomedValue => randomedValue;
 
     public void randomValue()
     {
+        _storyID = Random.Range(0, 10);
         randomedValue = Random.Range(-500, 0);
         Debug.Log("randomed");
         AlreadyGenerate = false;

@@ -3,6 +3,15 @@ using System.IO;
 using UnityEngine;
 
 [System.Serializable]
+public class storyData
+{
+    public int storyID;
+    public string heading;
+    public string story;
+    public string outcome;
+}
+
+[System.Serializable]
 public class CloneData
 {
     public Vector3 position;
@@ -16,6 +25,14 @@ public class GameData
 {
     public List<CloneData> clones = new List<CloneData>();
 }
+
+[System.Serializable]
+public class RootObject
+{
+    public List<storyData> storyData = new List<storyData>();
+    public GameData gameData = new GameData();
+}
+
 
 public class saveGame : MonoBehaviour
 {
@@ -43,7 +60,17 @@ public class saveGame : MonoBehaviour
 
     public void SaveGame()
     {
-        GameData gameData = new GameData();
+        RootObject rootObject = new RootObject();
+
+        // Load existing data
+        if (File.Exists(savePath))
+        {
+            string existingJson = File.ReadAllText(savePath);
+            rootObject = JsonUtility.FromJson<RootObject>(existingJson);
+        }
+
+        // Clear existing game data
+        rootObject.gameData = new GameData();
 
         // Find all objects with the tag "Node"
         GameObject[] nodes = GameObject.FindGameObjectsWithTag("Node");
@@ -52,13 +79,13 @@ public class saveGame : MonoBehaviour
             if (node.TryGetComponent<INode>(out INode nodeScript))
             {
                 string type = nodeScript.GetType().Name;
-                gameData.clones.Add(CreateCloneData(node.transform.position, type, nodeScript.randomedValue, nodeScript.AlreadyGenerate));
+                rootObject.gameData.clones.Add(CreateCloneData(node.transform.position, type, nodeScript.randomedValue, nodeScript.AlreadyGenerate));
             }
         }
 
         try
         {
-            string json = JsonUtility.ToJson(gameData, true);
+            string json = JsonUtility.ToJson(rootObject, true);
             File.WriteAllText(savePath, json);
             Debug.Log("Game Saved: " + json);
         }
@@ -67,6 +94,7 @@ public class saveGame : MonoBehaviour
             Debug.LogError("Failed to save game: " + e.Message);
         }
     }
+
 
     public void LoadGame()
     {
@@ -79,7 +107,7 @@ public class saveGame : MonoBehaviour
         try
         {
             string json = File.ReadAllText(savePath);
-            GameData gameData = JsonUtility.FromJson<GameData>(json);
+            RootObject rootObject = JsonUtility.FromJson<RootObject>(json);
 
             // Destroy all existing nodes
             GameObject[] existingNodes = GameObject.FindGameObjectsWithTag("Node");
@@ -89,7 +117,7 @@ public class saveGame : MonoBehaviour
             }
 
             // Recreate clones from saved data
-            foreach (CloneData cloneData in gameData.clones)
+            foreach (CloneData cloneData in rootObject.gameData.clones)
             {
                 GameObject prefabToUse = GetPrefabByType(cloneData.type);
                 if (prefabToUse != null)
@@ -107,6 +135,7 @@ public class saveGame : MonoBehaviour
             Debug.LogError("Failed to load game: " + e.Message);
         }
     }
+
 
     private CloneData CreateCloneData(Vector3 position, string type, float randomedValue, bool alreadyGenerate)
     {

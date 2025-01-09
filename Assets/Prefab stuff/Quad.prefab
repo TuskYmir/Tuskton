@@ -122,5 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d607e770b61140645bfe311b359732cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomedValue: 0
-  text: {fileID: 0}
+  _randomedValue: 0
+  _alreadyGenerate: 0
+  _storyID: 0
+  prefapIndexNumber: 0
