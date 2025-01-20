@@ -1,0 +1,1825 @@
+{
+	"stories": [
+		{
+			"storyID": 1,
+			"heading": "The Greedy Guildmaster",
+			"story": "The caravan halts as a loud argument erupts between the Sultan’s tax collectors and a shifty merchant draped in garish silks. The merchant, claiming to be a guildmaster, refuses to pay the tariffs, insisting his goods are exempt under the Sultan's own decree. You notice his caravan is laden with crates stamped with guild seals—but some of the markings seem hastily forged. The tax collectors demand immediate payment or confiscation. \n Will you intervene?",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Offer to cover the tariffs in exchange for a share of his profits.",
+					"description": "-50 Money, potential +100 Money",
+					"outcome": {
+						"Money":50
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Expose his forged seals to the tax collectors",
+					"description": "+5 Food, +1 Item (Exotic Spice)",
+					"outcome": {
+						"food": 20,
+						"itemID": 1
+					}
+				},
+				{"choiceID": 3,
+					"choiceText": "Bribe the tax collectors to let him go",
+					"description": "-50 Money, potential +100 Money",
+					"outcome": {
+						"Money":-30
+					}
+				}
+			]
+		},
+		{
+			"storyID": 2,
+			"heading": "Heading2",
+			"story": "Story2",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				}
+			]
+		},
+		{
+			"storyID": 3,
+			"heading": "Heading3",
+			"story": "Story3",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 4,
+			"heading": "Heading4",
+			"story": "Story4",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 5,
+			"heading": "Heading5",
+			"story": "Story5",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 6,
+			"heading": "Heading6",
+			"story": "Story6",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 7,
+			"heading": "Heading7",
+			"story": "Story7",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 8,
+			"heading": "Heading8",
+			"story": "Story8",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 9,
+			"heading": "Heading9",
+			"story": "Story9",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 10,
+			"heading": "Heading10",
+			"story": "Story10",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome":  {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 11,
+			"heading": "Heading11",
+			"story": "Story11",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 12,
+			"heading": "Heading12",
+			"story": "Story12",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 13,
+			"heading": "Heading13",
+			"story": "Story13",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 14,
+			"heading": "Heading14",
+			"story": "Story14",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 15,
+			"heading": "Heading15",
+			"story": "Story15",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 101,
+			"heading": "Heading101",
+			"story": "Story101",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 102,
+			"heading": "Heading102",
+			"story": "Story102",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 103,
+			"heading": "Heading103",
+			"story": "Story103",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 104,
+			"heading": "Heading104",
+			"story": "Story104",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 105,
+			"heading": "Heading105",
+			"story": "Story105",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 106,
+			"heading": "Heading106",
+			"story": "Story106",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 107,
+			"heading": "Heading107",
+			"story": "Story107",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 108,
+			"heading": "Heading108",
+			"story": "Story108",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 109,
+			"heading": "Heading109",
+			"story": "Story109",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 110,
+			"heading": "Heading110",
+			"story": "Story110",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 111,
+			"heading": "Heading111",
+			"story": "Story111",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+{
+			"storyID": 112,
+			"heading": "Heading112",
+			"story": "Story112",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+	{
+			"storyID": 113,
+			"heading": "Heading113",
+			"story": "Story113",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 114,
+			"heading": "Heading114",
+			"story": "Story114",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 115,
+			"heading": "Heading115",
+			"story": "Story115",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 201,
+			"heading": "Heading201",
+			"story": "Story201",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 202,
+			"heading": "Heading202",
+			"story": "Story202",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 203,
+			"heading": "Heading203",
+			"story": "Story203",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 204,
+			"heading": "Heading204",
+			"story": "Story204",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 205,
+			"heading": "Heading205",
+			"story": "Story205",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 206,
+			"heading": "Heading206",
+			"story": "Story206",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 207,
+			"heading": "Heading207",
+			"story": "Story207",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 208,
+			"heading": "Heading208",
+			"story": "Story208",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 209,
+			"heading": "Heading209",
+			"story": "Story209",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 210,
+			"heading": "Heading210",
+			"story": "Story210",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 211,
+			"heading": "Heading211",
+			"story": "Story211",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 212,
+			"heading": "Heading212",
+			"story": "Story212",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 213,
+			"heading": "Heading213",
+			"story": "Story213",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 214,
+			"heading": "Heading214",
+			"story": "Story214",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 215,
+			"heading": "Heading215",
+			"story": "Story215",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		},
+		{
+			"storyID": 301,
+			"heading": "Heading301",
+			"story": "Story301",
+			"choices": [
+				{
+					"choiceID": 1,
+					"choiceText": "Choice1",
+					"description": "Description 1",
+					"outcome": {
+						"Money": 10,
+						"food": 10,
+						"resource": 10,
+						"itemID": 1
+					}
+				},
+				{
+					"choiceID": 2,
+					"choiceText": "Choice2",
+					"description": "Description 2",
+					"outcome": {
+						"Money": 20,
+						"food": 20,
+						"resource": 20,
+						"itemID": 2
+					}
+				},
+				{
+					"choiceID": 3,
+					"choiceText": "Choice3",
+					"description": "Description 3",
+					"outcome": {
+						"Money": 30,
+						"food": 30,
+						"resource": 30,
+						"itemID": 3
+					}
+				}
+			]
+		}
+
+	]
+}
