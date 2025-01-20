@@ -1,12 +1,16 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class NodeGenerator : MonoBehaviour
 {
+    public SaveSystemManager saveSystemManager;
+    public PlayerDataManager playerDataManager;
+
     [Header("Prefabs")]
-    public List<GameObject> Prefabs = new List<GameObject>();
+    public GameObject Prefab; // Single prefab
 
     [Header("Generation Settings")]
     public int minNodes = 1;
@@ -18,9 +22,12 @@ public class NodeGenerator : MonoBehaviour
     [Header("UI Elements")]
     public Text valueText; // Assign the Text UI element in the Inspector
     public Text HeadingText; // Assign the Text UI element in the Inspector
-    public Text StoryText; // Assign the Text UI element in the Inspector
-    public Text OutcomeText; // Assign the Text UI element in the Inspector
+    public TextMeshProUGUI storyText; // Assign the Text UI element in the Inspector
+
     public GameObject alert; // Assign the Animation UI element in the Inspector
+    public Transform choicesContainer; // Assign the Choices Container in the Inspector
+    public Button choiceButtonPrefab; // Assign the Choice Button prefab in the Inspector
+
 
     private List<Vector3> generatedPositions = new List<Vector3>();
 
@@ -28,22 +35,29 @@ public class NodeGenerator : MonoBehaviour
 
     public GameObject menuUI; // Assign a menu UI prefab or GameObject in the Inspector
 
-    public MoneyManager moneyManager; // Reference to the MoneyManager
+    public PlayerDataManager moneyManager; // Reference to the MoneyManager
 
     private Camera mainCamera;
 
     public TimeManager timeManager;
 
-    private Animator alertAnimator;
+    public Animator alertAnimator;
 
     private void Start()
     {
+        Debug.Log("NodeGenerator Start");
         // Cache the main camera reference
         mainCamera = Camera.main;
-        alertAnimator = alert.GetComponent<Animator>();
+ 
     }
 
     private void Update()
+    {
+        HandleMouseclick();
+       
+    }
+    
+    public void HandleMouseclick()
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
@@ -53,23 +67,21 @@ public class NodeGenerator : MonoBehaviour
                 if (hit.collider.CompareTag("Node"))
                 {
                     selectedNode = hit.collider.gameObject;
-                    ShowMenu(hit.point);
+                    PREUpdateMunu(selectedNode.GetComponent<NodeInfoManager>().storyID);
+                    ShowMenu();
 
-                    // Get the Node component and update the valueText
-                    INode valueProvider = selectedNode.GetComponent<INode>();
+                    // Get the Story component and update the valueText
+                    NodeInfoManager valueProvider = selectedNode.GetComponent<NodeInfoManager>();
                     if (valueProvider != null)
                     {
                         valueText.text = $"Value: {valueProvider.randomedValue}";
-                        HeadingText.text = $"Heading: {valueProvider.heading}";
-                        StoryText.text = $"Story: {valueProvider.storyText}";
-                        OutcomeText.text = $"Outcome: {valueProvider.outcome}";
                     }
                 }
                 else
                 {
                     HideMenu();
                 }
-            }           
+            }
         }
     }
 
@@ -79,16 +91,16 @@ public class NodeGenerator : MonoBehaviour
 
         if (timeManager.currentActs > 0)
         {
-            if (Prefabs.Count == 0)
+            if (Prefab == null)
             {
-                Debug.LogError("No prefabs assigned for node generation.");
+                Debug.LogError("No prefab assigned for node generation.");
                 return;
             }
 
-            INode valueProvider = selectedNode.GetComponent<INode>();
+            NodeInfoManager valueProvider = selectedNode.GetComponent<NodeInfoManager>();
             if (valueProvider != null)
             {
-                if (!valueProvider.AlreadyGenerate)
+                if (!valueProvider.alreadyGenerate)
                 {
                     Vector3 originPosition = selectedNode.transform.position;
                     int nodeCount = Random.Range(minNodes, maxNodes + 1);
@@ -102,7 +114,7 @@ public class NodeGenerator : MonoBehaviour
                     }
 
                     // Set AlreadyGenerated to true
-                    valueProvider.AlreadyGenerate = true;
+                    valueProvider.alreadyGenerate = true;
                     timeManager.currentActs -= 1;
                 }
                 else
@@ -128,12 +140,8 @@ public class NodeGenerator : MonoBehaviour
         // Check if the new position is valid
         if (IsPositionValid(newPosition))
         {
-            // Randomly select prefab
-            int prefabIndex = Random.Range(0, Prefabs.Count);
-            GameObject prefabToUse = Prefabs[prefabIndex];
-
             // Instantiate the node
-            GameObject newNode = Instantiate(prefabToUse, newPosition, Quaternion.Euler(90, 0, 0));
+            GameObject newNode = Instantiate(Prefab, newPosition, Quaternion.Euler(90, 0, 0));
 
             // Tag the new node for detection
             newNode.tag = "Node";
@@ -167,7 +175,100 @@ public class NodeGenerator : MonoBehaviour
         return true;
     }
 
-    private void ShowMenu(Vector3 position)
+    public void PREUpdateMunu(int storyID)
+    {
+        // Try to get the story from the dictionary
+        if (saveSystemManager.storyDictionary.TryGetValue(storyID, out Story story))
+        {
+            // Pass the story to the DisplayStory method
+            UpdateMenu(story);
+        }
+        else
+        {
+            Debug.Log($"Story with ID {storyID} not found!");
+        }
+    }
+
+    private void UpdateMenu(Story story)
+    {
+        // Example UI setup for displaying the story
+        HeadingText.text = story.heading;
+        storyText.text = story.story;
+
+        // Clear previous choices by deactivating them
+        foreach (Transform child in choicesContainer)
+        {
+            child.gameObject.SetActive(false);
+        }
+
+        // Display choices as buttons
+        int index = 0;
+        foreach (var choice in story.choices)
+        {
+            Button choiceButton;
+            if (index < choicesContainer.childCount)
+            {
+                // Reuse existing button
+                choiceButton = choicesContainer.GetChild(index).GetComponent<Button>();
+                choiceButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                // Instantiate new button if needed
+                choiceButton = Instantiate(choiceButtonPrefab, choicesContainer);
+            }
+
+            choiceButton.GetComponentInChildren<Text>().text = choice.choiceText;
+
+            // Remove previous listeners to avoid multiple calls
+            choiceButton.onClick.RemoveAllListeners();
+
+            // Add a listener to handle button click
+            choiceButton.onClick.AddListener(() => OnChoiceSelected(story,choice));
+
+            index++;
+        }
+    }
+
+    private Choice pendingChoice;
+
+    private void OnChoiceSelected(Story story,Choice choice)
+    {
+        if (pendingChoice == choice)
+        {
+            // Confirm the choice
+            Debug.Log($"Confirmed choice: {choice.choiceText}");
+            playerDataManager.AddMoney(choice.outcome.Money);
+            playerDataManager.AddFood(choice.outcome.food);
+            playerDataManager.AddResource(choice.outcome.resource);
+            pendingChoice = null;
+            GenerateNodes();
+            HideMenu();
+        }
+        else
+        {
+            
+            storyText.text = $"{story.story}" + "<color=grey>\n__________________________________________________________________________________________" + $"\n<i>({choice.choiceText})</i></color>" + $"<color=yellow>\n{choice.description}</color>";
+            // Set the pending choice and trigger the WaitingForConfirm animation
+            pendingChoice = choice;
+            Debug.Log($"Selected choice: {choice.choiceText}. Click again to confirm.");
+            //alertAnimator.SetTrigger("WaitingForConfirm");
+
+
+            // Trigger UnSelected animation for other choices
+            foreach (Transform child in choicesContainer)
+            {
+                Button button = child.GetComponent<Button>();
+                if (button != null && button.GetComponentInChildren<Text>().text != choice.choiceText)
+                {
+                    Debug.Log("UnSelected");
+                    //alertAnimator.SetTrigger("UnSelected");
+                }
+            }
+        }
+    }
+
+    private void ShowMenu()
     {
         if (menuUI != null)
         {

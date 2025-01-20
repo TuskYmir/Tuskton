@@ -17,6 +17,7 @@ public class DragMoveCamera : MonoBehaviour
     private bool isMovingToNode = false;
     private Vector3 targetPosition;
     private float moveStartTime;
+    public GameObject UI;
 
     void Update()
     {
@@ -29,6 +30,8 @@ public class DragMoveCamera : MonoBehaviour
 
     void HandleDragging()
     {
+        if (UI.activeSelf && !isMovingToNode) return; // Disable dragging if UI is active and not moving to node
+
         // Detect mouse down
         if (Input.GetMouseButtonDown(1))
         {
@@ -58,6 +61,8 @@ public class DragMoveCamera : MonoBehaviour
 
     void HandleScrolling()
     {
+        if (UI.activeSelf && !isMovingToNode) return; // Disable scrolling if UI is active and not moving to node
+
         // Get scroll input
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
@@ -83,6 +88,8 @@ public class DragMoveCamera : MonoBehaviour
 
     void HandleWASDMovement()
     {
+        if (UI.activeSelf && !isMovingToNode) return; // Disable WASD movement if UI is active and not moving to node
+
         // Get input
         float horizontal = Input.GetAxis("Horizontal"); // A/D or Left/Right
         float vertical = Input.GetAxis("Vertical");     // W/S or Up/Down
@@ -100,6 +107,7 @@ public class DragMoveCamera : MonoBehaviour
 
     void HandleRaycastHit()
     {
+
         if (Input.GetMouseButtonDown(0)) // Left mouse button
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

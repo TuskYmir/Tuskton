@@ -2,58 +2,43 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-[System.Serializable]
-public class storyData
+public class SaveSystemManager : MonoBehaviour
 {
-    public int storyID;
-    public string heading;
-    public string story;
-    public string outcome;
-}
+    public TextAsset jsonFile; // JSON file containing the stories
+    public Dictionary<int, Story> storyDictionary; // The dictionary for fast lookups
 
-[System.Serializable]
-public class CloneData
-{
-    public Vector3 position;
-    public string type;
-    public float randomedValue;
-    public bool alreadyGenerate;
-}
-
-[System.Serializable]
-public class GameData
-{
-    public List<CloneData> clones = new List<CloneData>();
-}
-
-[System.Serializable]
-public class RootObject
-{
-    public List<storyData> storyData = new List<storyData>();
-    public GameData gameData = new GameData();
-}
-
-
-public class saveGame : MonoBehaviour
-{
-    public List<GameObject> prefabs; // Assign prefabs in Unity Inspector
-    private Dictionary<string, GameObject> prefabDictionary;
+    public GameObject prefab; // Assign the single prefab in Unity Inspector
 
     private string savePath;
 
     void Start()
     {
+        Debug.Log("SaveSystemManager Start");
+        LoadStoryData();
         savePath = Application.persistentDataPath + "/savegame.json";
         Debug.Log("Save Path: " + savePath);
+    }
+
+    public void LoadStoryData()
+    {
+        // Deserialize the JSON into a StoryData object
+        var storyData = JsonUtility.FromJson<StoryData>(jsonFile.text);
+        Debug.Log("Loaded " + storyData.stories.Count + " stories.");
 
         // Initialize the dictionary
-        prefabDictionary = new Dictionary<string, GameObject>();
-        foreach (GameObject prefab in prefabs)
+        storyDictionary = new Dictionary<int, Story>();
+
+        // Populate the dictionary
+        foreach (var story in storyData.stories)
         {
-            if (prefab.TryGetComponent<INode>(out INode nodeScript))
+            if (!storyDictionary.ContainsKey(story.storyID)) // Check for duplicate IDs
             {
-                string typeName = nodeScript.GetType().Name;
-                prefabDictionary[typeName] = prefab;
+                storyDictionary.Add(story.storyID, story);
+                Debug.Log($"Added storyID {story.storyID} to dictionary.");
+            }
+            else
+            {
+                Debug.LogWarning($"Duplicate storyID found: {story.storyID}. Skipping.");
             }
         }
     }
@@ -73,17 +58,16 @@ public class saveGame : MonoBehaviour
             rootObject = new RootObject();
         }
 
-        // Clear existing game data but keep storyData intact
+        // Clear existing game data
         rootObject.gameData = new GameData();
 
         // Find all objects with the tag "Node"
         GameObject[] nodes = GameObject.FindGameObjectsWithTag("Node");
         foreach (GameObject node in nodes)
         {
-            if (node.TryGetComponent<INode>(out INode nodeScript))
+            if (node.TryGetComponent<NodeInfoManager>(out NodeInfoManager storyScript))
             {
-                string type = nodeScript.GetType().Name;
-                rootObject.gameData.clones.Add(CreateCloneData(node.transform.position, type, nodeScript.randomedValue, nodeScript.AlreadyGenerate));
+                rootObject.gameData.clones.Add(CreateCloneData(node.transform.position, storyScript.randomedValue, storyScript.alreadyGenerate));
             }
         }
 
@@ -98,7 +82,6 @@ public class saveGame : MonoBehaviour
             Debug.LogError("Failed to save game: " + e.Message);
         }
     }
-
 
     public void LoadGame()
     {
@@ -123,13 +106,9 @@ public class saveGame : MonoBehaviour
             // Recreate clones from saved data
             foreach (CloneData cloneData in rootObject.gameData.clones)
             {
-                GameObject prefabToUse = GetPrefabByType(cloneData.type);
-                if (prefabToUse != null)
-                {
-                    GameObject newClone = Instantiate(prefabToUse, cloneData.position, Quaternion.Euler(90, 0, 0));
-                    newClone.tag = "Node";
-                    AssignCloneData(newClone, cloneData);
-                }
+                GameObject newClone = Instantiate(prefab, cloneData.position, Quaternion.Euler(90, 0, 0));
+                newClone.tag = "Node";
+                AssignCloneData(newClone, cloneData);
             }
 
             Debug.Log("Game Loaded");
@@ -140,33 +119,22 @@ public class saveGame : MonoBehaviour
         }
     }
 
-
-    private CloneData CreateCloneData(Vector3 position, string type, float randomedValue, bool alreadyGenerate)
+    private CloneData CreateCloneData(Vector3 position, int randomedValue, bool alreadyGenerate)
     {
         return new CloneData
         {
             position = position,
-            type = type,
             randomedValue = randomedValue,
             alreadyGenerate = alreadyGenerate
         };
     }
 
-    private GameObject GetPrefabByType(string type)
-    {
-        if (prefabDictionary.TryGetValue(type, out GameObject prefab))
-        {
-            return prefab;
-        }
-        return null;
-    }
-
     private void AssignCloneData(GameObject clone, CloneData cloneData)
     {
-        if (clone.TryGetComponent<INode>(out INode nodeScript))
+        if (clone.TryGetComponent<NodeInfoManager>(out NodeInfoManager storyScript))
         {
-            nodeScript.randomedValue = cloneData.randomedValue;
-            nodeScript.AlreadyGenerate = cloneData.alreadyGenerate;
+            storyScript.randomedValue = cloneData.randomedValue;
+            storyScript.alreadyGenerate = cloneData.alreadyGenerate;
         }
     }
 }

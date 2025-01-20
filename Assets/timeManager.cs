@@ -24,6 +24,8 @@ public class TimeManager : MonoBehaviour
     public GameObject skipMonthButton;
     public GameObject skipYearButton;
 
+    public SaveSystemManager saveSystemManager;
+
     private void Update()
     {
         actsText.text = $"Acts: {currentActs}/{maxActs}";
@@ -55,6 +57,7 @@ public class TimeManager : MonoBehaviour
             currentActs = maxActs;
             day = 0;
             skipWeekButton.SetActive(false);
+            saveSystemManager.SaveGame();
         }
     }
     public void SkipMonth()
